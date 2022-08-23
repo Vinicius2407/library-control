@@ -15,6 +15,9 @@ public class AuthorRepository implements IAuthorRepository {
         Author author = new Author();
         AuthorRepository authorRepository = new AuthorRepository();
 
+
+        author.setName("Bruno Gostoso");
+        author.setId("2");
 //        author.setName("Bruno Silveira Gostoso");
 //
 //        authorRepository.save(author);
@@ -28,7 +31,10 @@ public class AuthorRepository implements IAuthorRepository {
 //        System.out.println(nameAuthor);
 
 //        authorRepository.update(author);
-        authorRepository.delete("4");
+
+        authorRepository.delete("2");
+
+//        authorRepository.update(author);
     }
 
     @Override
@@ -47,7 +53,14 @@ public class AuthorRepository implements IAuthorRepository {
 
     @Override
     public void update(Author author) {
+        try {
+            Statement stmt = conn.createStatement();
 
+            stmt.execute("UPDATE author SET name = '" + author.getName() + "' WHERE id = " + author.getId());
+            System.out.println("Author updated successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -56,11 +69,8 @@ public class AuthorRepository implements IAuthorRepository {
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM author WHERE id = " + id);
             ResultSet resultSet = stmt.executeQuery();
 
-            if (resultSet.getRowId(id) != null) {
-                System.out.println("Author deleted successfully");
-            } else {
-                System.out.println("Author not found");
-            }
+            System.out.println("Author deleted successfully");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
