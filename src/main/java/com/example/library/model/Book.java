@@ -9,6 +9,25 @@ public class Book {
     private Author author;
     private BookStatus bookStatus;
 
+    public Book() {}
+
+    public Book(String id, String name, LocalDate date, Author author, BookStatus bookStatus) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.author = author;
+        this.bookStatus = bookStatus;
+    }
+
+    public Book(String name, LocalDate date, Author author, BookStatus bookStatus) {
+        super();
+        this.name = name;
+        this.date = date;
+        this.author = author;
+        this.bookStatus = bookStatus;
+    }
+
     public String getId() {
         return id;
     }

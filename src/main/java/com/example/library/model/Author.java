@@ -4,6 +4,19 @@ public class Author {
     private String id;
     private String name;
 
+    public Author() {}
+
+    public Author(String id, String name) {
+        super();
+        this.id = id;
+        this.name = name;
+    }
+
+    public Author(String name) {
+        super();
+        this.name = name;
+    }
+
     public String getId() {
         return id;
     }
