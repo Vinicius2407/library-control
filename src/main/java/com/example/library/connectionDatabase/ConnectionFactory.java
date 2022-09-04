@@ -18,4 +18,14 @@ public class ConnectionFactory {
         }
         return connection;
     }
+
+    public static void close() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }
